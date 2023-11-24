@@ -7,7 +7,6 @@ using std::cout;
 using std::endl;
 using std::vector;
 
-
 int fast_pow(int x, int y) {
   int ans = 1;
   for (;y;y>>=1) {
@@ -16,11 +15,6 @@ int fast_pow(int x, int y) {
     x *= x;
   }
   return ans;
-}
-
-template <typename T>
-bool sort_by_size(const vector<T> a, const vector<T> b) {
-  return a.size()> b.size();
 }
 
 template <typename T>
@@ -38,7 +32,9 @@ vector<vector<T>> power_set(vector<T> v) {
     }
     ans.push_back(t);
   }
-  std::sort(ans.begin(),ans.end());
+  std::sort(ans.begin(),ans.end(),[](const vector<T>& a, const vector<T>& b){
+      return a.size() < b.size();
+      });
   return ans;
 }
 
